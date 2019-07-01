@@ -57,7 +57,7 @@ public class SuperPackage extends ServicePackage implements
                 card.setConsumAmount(card.getConsumAmount() + 0.2);
             }else{
                 temp = i; //记录实现通话分钟数
-                throw new Exception("本次已通话"+i+"分钟,您的余额不足，请充值后再使用！");
+                throw new Exception("本次已通话"+temp+"分钟,您的余额不足，请充值后再使用！");
             }
         }
         return temp;
@@ -77,7 +77,7 @@ public class SuperPackage extends ServicePackage implements
                 card.setConsumAmount(card.getConsumAmount() + 0.1);
             }else{
                 temp = i;
-                throw new Exception("本次已使用流量"+i+"MB,您的余额不足，请充值后再使用！");
+                throw new Exception("本次已使用流量"+temp+"MB,您的余额不足，请充值后再使用！");
             }
         }
         return temp;
@@ -95,7 +95,7 @@ public class SuperPackage extends ServicePackage implements
                 card.setConsumAmount(card.getConsumAmount()+0.1);
             }else{
                 temp=i;
-                throw new Exception("本次已发送"+temp+"条，您的余额不足，请充值后再使用1");
+                throw new Exception("本次已发送"+temp+"条，您的余额不足，请充值后再使用");
             }
         }
         return temp;

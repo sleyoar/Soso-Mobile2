@@ -17,18 +17,18 @@ public class CardUtil {
     List<Scene> scenes=new ArrayList<>();
 
     public void initScene(){
-        MobileCard card1=new MobileCard("阿球","1234","13913145200",new SuperPackage(),78,72);
+        MobileCard card1=new MobileCard("阿球","1234","13912345679",new SuperPackage(),78,72);
         MobileCard card2=new MobileCard("阿鑫","1235","13912345678",new TalkPackage(),58,42);
         MobileCard card3=new MobileCard("阿飞","1236","13987654321",new NetPackage(),68,32);
         card2.setConsumAmount(98);
         card2.setRealTalkTime(500);
         card2.setRealSMSCount(100);
-        cards.put("13913145200",card1);
+        cards.put("13912345679",card1);
         cards.put("13912345678",card2);
         cards.put("13987654321",card3);
         scenes.add(new Scene("通话",90,"给女朋友打电话，90分钟"));
-        scenes.add(new Scene("上网",2*1024,"看健康的小视频 使用流量2G"));
         scenes.add(new Scene("短信",50,"与神秘小姐姐短信互动 发送短线50条"));
+        scenes.add(new Scene("上网",2*1024,"看健康的小视频 使用流量2G"));
         System.out.println(cards);
         System.out.println(scenes);
         System.out.println(consumInfos);
@@ -95,15 +95,11 @@ public class CardUtil {
     }
     public void delCard(String number){
         Set<String> numberKeys=cards.keySet();
-        Iterator<String> it=numberKeys.iterator();
-        while (it.hasNext()){
-            String numkey=it.next();
-            if(numkey.equals(number)){
-                cards.remove(numkey);
-                System.out.println("卡号："+number+"办理退网成功\n谢谢使用！");
-            }else {
-                System.out.println("没有卡号，销卡失败！");
-            }
+        if(numberKeys.contains(number)){
+            cards.remove(number);
+            System.out.println("卡号："+number+"办理退网成功");
+        }else {
+            System.out.println("没有卡号，销卡失败！");
         }
     }
 
@@ -197,7 +193,7 @@ public class CardUtil {
         Random random=new Random();
         int ranNum=0;int temp=0;//记录各场景中实际消费数据
         do{
-            ranNum=random.nextInt(2);
+            ranNum=random.nextInt(3);
             Scene scene=scenes.get(ranNum);
             switch (ranNum){
                 case 0:
@@ -222,7 +218,7 @@ public class CardUtil {
                         System.out.println(scene.getDescription());
                         SendService sendService=(SendService) pack;
                         try {
-                            sendService.send(scene.getData(),cards.get(number));
+                            temp=sendService.send(scene.getData(),cards.get(number));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -236,7 +232,7 @@ public class CardUtil {
                         System.out.println(scene.getDescription());
                         NetService netService=(NetService)pack;
                         try {
-                            netService.netPlay(scene.getData(),cards.get(number));
+                            temp=netService.netPlay(scene.getData(),cards.get(number));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

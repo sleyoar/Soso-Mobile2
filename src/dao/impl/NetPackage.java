@@ -40,7 +40,7 @@ public class NetPackage extends ServicePackage implements NetService {
                 card.setConsumAmount(card.getConsumAmount() + 0.1);
                 }else{
                 temp = i;
-                throw new Exception("本次已使用流量"+i+"MB,您的余额不足，请充值后再使用！");
+                throw new Exception("本次已使用流量"+temp+"MB,您的余额不足，请充值后再使用！");
                 }
              }
         return temp;

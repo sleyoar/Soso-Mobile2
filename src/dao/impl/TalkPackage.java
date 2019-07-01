@@ -44,7 +44,7 @@ public class TalkPackage extends ServicePackage implements
                 card.setConsumAmount(card.getConsumAmount() + 0.2);
             }else{
                 temp = i; //记录实现通话分钟数
-                throw new Exception("本次已通话"+i+"分钟,您的余额不足，请充值后再使用！");
+                throw new Exception("本次已通话"+temp+"分钟,您的余额不足，请充值后再使用！");
             }
         }
         return temp;
